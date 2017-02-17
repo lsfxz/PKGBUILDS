@@ -1,0 +1,38 @@
+pkgname=packer-io-git
+pkgver=0.12.2.r140.g99ffcfc2
+pkgver() {
+  cd "$srcdir/packer"
+  git describe --long --tags | sed -r 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+pkgrel=2
+pkgdesc="Packer is a tool for creating identical machine images for multiple platforms from a single source configuration."
+url="http://www.packer.io"
+arch=('x86_64' 'i686')
+license=('MPL2')
+conflicts=('packer-io')
+provides=('packer-io')
+makedepends=('mercurial' 'go' 'bzr')
+source=('packer::git+http://github.com/mitchellh/packer'
+	'patchfile.diff')
+md5sums=('SKIP'
+         '4c25632857e61974b216381d681a7b7e')
+
+prepare() {
+  export GOPATH=$srcdir
+  go get -u github.com/mitchellh/packer
+}
+
+build() {
+  export GOPATH=$srcdir
+  cd "$srcdir"/packer
+  patch -Np1 -i "$srcdir"/patchfile.diff
+  cd "$srcdir/src/github.com/mitchellh/packer"
+  patch -Np1 -i "$srcdir"/patchfile.diff
+  make fmt
+  PATH="$PATH:$srcdir/bin" make
+}
+
+package() {
+  install -dm755 "$pkgdir/usr/bin"
+  install -Dm755 "$srcdir/bin/packer" "$pkgdir/usr/bin/packer-io"
+}

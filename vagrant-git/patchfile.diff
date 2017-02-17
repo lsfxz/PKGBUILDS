@@ -1,0 +1,14 @@
+diff --git a/plugins/providers/virtualbox/driver/meta.rb b/plugins/providers/virtualbox/driver/meta.rb
+index 0dd186d8c..366c7b6a3 100644
+--- a/plugins/providers/virtualbox/driver/meta.rb
++++ b/plugins/providers/virtualbox/driver/meta.rb
+@@ -160,7 +160,8 @@ module VagrantPlugins
+             output = execute("--version")
+             if output =~ /vboxdrv kernel module is not loaded/ ||
+               output =~ /VirtualBox kernel modules are not loaded/i
+-              raise Vagrant::Errors::VirtualBoxKernelModuleNotLoaded
++              # raise Vagrant::Errors::VirtualBoxKernelModuleNotLoaded
++              # I know what I'm doing – I'm a professional!
+             elsif output =~ /Please install/
+               # Check for installation incomplete warnings, for example:
+               # "WARNING: The character device /dev/vboxdrv does not
