@@ -1,8 +1,8 @@
-# Maintainer : lsfxz <lsfxz@pfho.net>
+# Maintainer : Christian Hofmann <chof@pfho.net>
 pkgname=python-malboxes-git
 _pkgname=malboxes
-pkgver=159.2be50b4
-pkgrel=3
+pkgver=161.f0a6a97
+pkgrel=1
 pkgdesc="Builds malware analysis Windows VMs so that you don't have to."
 arch=('any')
 source='https://github.com/GoSecure/malboxes'
