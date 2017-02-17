@@ -1,4 +1,3 @@
-# Maintainer: Aaron Tinio <aptinio at gmail dot com>
 pkgname=gem-home-git
 _pkgname=gem_home
 pkgver=0.1.0.r12.eaedc3b
